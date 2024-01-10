@@ -1,0 +1,40 @@
+﻿@using UrunSatisPortali.Models;
+@model List<Product>
+
+@{
+    ViewData["Title"] = "Urunler";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<h1>Urunler</h1>
+<hr />
+<table class="table table-bordered">
+    <tr>
+        <th>Id</th>
+        <th>Urun AD</th>
+        <th>Miktar</th>
+        <th>Kategoriler</th>
+        <th>Fiyat</th>
+        <th>Resim</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.categoryID </td>
+            <td>@x.productName</td>
+            <td>@x.productStock</td>
+            <td>@x.categoryies.kategoriAD</td>
+            <td>@x.productPrice₺</td>
+            <td><img src="~/img/@x.productImage" style="width:150px; height:100px;" /></td>
+            <td><a href="/Admin/DeleteProduct/@x.productID" class="btn btn-danger">Sil</a></td>
+            <td><a href="#" class="btn btn-success">Güncelle</a></td>
+        </tr>
+    }
+
+</table>
+<a asp-controller="Admin" asp-action="AddProduct" class="btn btn-primary">Yeni Urun</a>
